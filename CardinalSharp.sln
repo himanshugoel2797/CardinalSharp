@@ -1,0 +1,53 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31919.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardinalSharp", "CardinalSharp\CardinalSharp.csproj", "{6001704B-98C6-44D1-AED6-ECEBF383F86B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardinalSharp.Compiler", "CardinalSharp.Compiler\CardinalSharp.Compiler.csproj", "{7A930069-83C6-430A-AC15-B19449B4C9B6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{32752014-BBE3-4058-9C8B-0C5B26FF9399} = {32752014-BBE3-4058-9C8B-0C5B26FF9399}
+		{6001704B-98C6-44D1-AED6-ECEBF383F86B} = {6001704B-98C6-44D1-AED6-ECEBF383F86B}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardinalSharp.RuntimeLib", "CardinalSharp.RuntimeLib\CardinalSharp.RuntimeLib.csproj", "{32752014-BBE3-4058-9C8B-0C5B26FF9399}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardinalSharp.Compiler.Support", "CardinalSharp.Compiler.Support\CardinalSharp.Compiler.Support.csproj", "{915F6E58-BD45-43EE-ADDA-21A0AC8420BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CardinalSharp.Runtime", "CardinalSharp.Runtime\CardinalSharp.Runtime.csproj", "{D711CAE8-589B-44FB-A780-38C882848405}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6001704B-98C6-44D1-AED6-ECEBF383F86B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6001704B-98C6-44D1-AED6-ECEBF383F86B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6001704B-98C6-44D1-AED6-ECEBF383F86B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6001704B-98C6-44D1-AED6-ECEBF383F86B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A930069-83C6-430A-AC15-B19449B4C9B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A930069-83C6-430A-AC15-B19449B4C9B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A930069-83C6-430A-AC15-B19449B4C9B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A930069-83C6-430A-AC15-B19449B4C9B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32752014-BBE3-4058-9C8B-0C5B26FF9399}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32752014-BBE3-4058-9C8B-0C5B26FF9399}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32752014-BBE3-4058-9C8B-0C5B26FF9399}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32752014-BBE3-4058-9C8B-0C5B26FF9399}.Release|Any CPU.Build.0 = Release|Any CPU
+		{915F6E58-BD45-43EE-ADDA-21A0AC8420BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{915F6E58-BD45-43EE-ADDA-21A0AC8420BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{915F6E58-BD45-43EE-ADDA-21A0AC8420BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{915F6E58-BD45-43EE-ADDA-21A0AC8420BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D711CAE8-589B-44FB-A780-38C882848405}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D711CAE8-589B-44FB-A780-38C882848405}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D711CAE8-589B-44FB-A780-38C882848405}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D711CAE8-589B-44FB-A780-38C882848405}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EA2A6C15-B882-432A-858A-9676CBB0422C}
+	EndGlobalSection
+EndGlobal

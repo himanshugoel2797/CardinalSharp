@@ -11,7 +11,7 @@ namespace CardinalSharp.Compiler
     {
         public static string Mangle(Type t, bool isStatic = false)
         {
-            return t.FullName + (isStatic ? "_static" : "");
+            return t.FullName.Replace(".", "____") + (isStatic ? "_static" : "");
         }
 
         public static string Mangle(Type returnType, Type[] parameterTypes, string name, bool isStatic, bool isConstr)
@@ -19,18 +19,18 @@ namespace CardinalSharp.Compiler
             var s = Mangle(returnType) + "___";
             foreach (var type in parameterTypes)
                 s += Mangle(type) + "__";
-            s += "_" + name + (isStatic ? "_static" : "") + (isConstr ? "_constr" : "");
+            s += "_" + name.Replace(".", "____") + (isStatic ? "_static" : "") + (isConstr ? "_constr" : "");
             return s;
         }
 
         public static string Mangle(MethodInfo mi)
         {
-            return Mangle(mi.ReturnType, mi.GetParameters().Select(a => a.ParameterType).ToArray(), $"{mi.ReflectedType.FullName}.{mi.Name}", mi.IsStatic, false);
+            return Mangle(mi.ReturnType, mi.GetParameters().Select(a => a.ParameterType).ToArray(), $"{mi.ReflectedType.FullName}.{mi.Name}".Replace(".", "____"), mi.IsStatic, false);
         }
 
         public static string Mangle(ConstructorInfo mi)
         {
-            return Mangle(typeof(void), mi.GetParameters().Select(a => a.ParameterType).ToArray(), $"{mi.ReflectedType.FullName}.{mi.Name}", mi.IsStatic, true);
+            return Mangle(typeof(void), mi.GetParameters().Select(a => a.ParameterType).ToArray(), $"{mi.ReflectedType.FullName}.{mi.Name}".Replace(".", "____"), mi.IsStatic, true);
         }
     }
 }

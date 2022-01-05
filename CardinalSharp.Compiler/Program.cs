@@ -8,6 +8,18 @@ TypeResolver typeResolver = new TypeResolver();
 Records records = new Records();
 TypeParser typeParser = new TypeParser(records, typeResolver);
 MethodParser methodParser = new MethodParser(records, typeParser, typeResolver);
+VTableCache vTableCache = new VTableCache(typeResolver);
+
+Console.WriteLine("Generating VTables...");
+var runtime_types = typeof(CardinalSharp.RuntimeLib.AssemblyRef).Assembly.GetTypes();
+foreach (var runtimeType in runtime_types)
+    vTableCache.Add(runtimeType);
+
+var os_types = typeof(CardinalSharp.AssemblyRef).Assembly.GetTypes();
+foreach (var osType in os_types)
+    vTableCache.Add(osType);
+vTableCache.Compile();
+Console.WriteLine("Done!");
 
 Console.WriteLine("Parsing CardinalSharp...");
 var main_mthd = typeof(CardinalSharp.Program).GetMethod("Main");

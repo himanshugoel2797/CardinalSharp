@@ -46,16 +46,17 @@ namespace CardinalSharp.Compiler
         {
             if (CurrentOffset >= IL.Length)
                 return false;
+            CurrentOffset += GetCurrentInstructionSize();
+            return CurrentOffset < IL.Length;
+        }
 
+        public int GetCurrentInstructionSize()
+        {
             int opcode_size = 0;
-
             OpCode opc = GetCurrentOpCode();
             for (uint i = 0; i < GetParameterCount(); i++)
                 opcode_size += GetParameterSize(i);
-
-            CurrentOffset += opc.Size + opcode_size;
-
-            return CurrentOffset < IL.Length;
+            return opc.Size + opcode_size;
         }
 
         public OpCode GetCurrentOpCode()

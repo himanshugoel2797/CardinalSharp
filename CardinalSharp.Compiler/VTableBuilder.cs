@@ -43,11 +43,6 @@ namespace CardinalSharp.Compiler
             if (!interfaces.ContainsKey(i)) interfaces[i] = cache.Get(i);
         }
 
-        private void AddInterfaceMethod(MethodInfo mthd, TypeResolver resolver)
-        {
-            interfaces[mthd.DeclaringType].UpdateMethod(mthd, resolver);
-        }
-
         public void Build(Type t, TypeResolver resolver)
         {
             this.t = t;
@@ -64,14 +59,17 @@ namespace CardinalSharp.Compiler
                 base_vtable = cache.Get(t.BaseType);
 
             var t_res = resolver.Resolve(t);
-            var interfaces = t_res.GetInterfaces();
-            foreach (var i in interfaces)
+            if (!t.IsInterface)
             {
-                AddInterface(i);
-                var map = t_res.GetInterfaceMap(i);
-                for (int j = 0; j < map.InterfaceMethods.Length; j++)
+                var interfaces = t_res.GetInterfaces();
+                foreach (var i in interfaces)
                 {
-                    this.interfaces[i].UpdateMethodInterface(map.InterfaceMethods[j], map.TargetMethods[j]);
+                    AddInterface(i);
+                    var map = t_res.GetInterfaceMap(i);
+                    for (int j = 0; j < map.InterfaceMethods.Length; j++)
+                    {
+                        this.interfaces[i].UpdateMethodInterface(map.InterfaceMethods[j], map.TargetMethods[j]);
+                    }
                 }
             }
 
@@ -91,6 +89,30 @@ namespace CardinalSharp.Compiler
                     AddMethod(mth);
                 else
                     Console.WriteLine($"Ignoring method: {mth.DeclaringType.Name}.{mth.Name}");
+            }
+
+            var all_mthds = t_res.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
+            foreach (var mth in all_mthds)
+            {
+                //process all types involved in the method
+                if (mth.ReturnType != typeof(void))
+                {
+                    var x = mth.ReturnType;
+                    while (x.IsArray) x = mth.ReturnType.GetElementType();
+                    cache.Get(x);
+                }
+
+                var ps = mth.GetParameters();
+                foreach (var p in ps)
+                    if (p.ParameterType != typeof(void))
+                    {
+                        var x = p.ParameterType;
+                        while (x.IsArray) x = mth.ReturnType.GetElementType();
+                        cache.Get(x);
+                    }
+
+                //Emit code for this method
+                cache.CompileMethod(mth);
             }
         }
 

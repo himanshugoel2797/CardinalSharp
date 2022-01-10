@@ -33,15 +33,15 @@ namespace CardinalSharp.Compiler
 
 
             //Parse static members
-            typeParser.ParseStatic(mthd.ReflectedType);
+            //typeParser.ParseStatic(mthd.ReflectedType);
 
             //If method is not static, parse parent type
-            if (!mthd.IsStatic) typeParser.Parse(mthd.ReflectedType);
+            //if (!mthd.IsStatic) typeParser.Parse(mthd.ReflectedType);
 
             //Parse parameter types
-            foreach (var param in mthd.GetParameters())
-                typeParser.Parse(param.ParameterType);
-            typeParser.Parse(mthd.ReturnType); //Parse return type
+            //foreach (var param in mthd.GetParameters())
+            //    typeParser.Parse(param.ParameterType);
+            //typeParser.Parse(mthd.ReturnType); //Parse return type
 
             //TODO: For generic types generate a specialized version of the type
 
@@ -78,14 +78,14 @@ namespace CardinalSharp.Compiler
                 return;
 
             //Parse static members
-            typeParser.ParseStatic(mthd.ReflectedType);
+            //typeParser.ParseStatic(mthd.ReflectedType);
 
             //If method is not static, parse parent type
-            if (!mthd.IsStatic) typeParser.Parse(mthd.ReflectedType);
+            //if (!mthd.IsStatic) typeParser.Parse(mthd.ReflectedType);
 
             //Parse parameter types
-            foreach (var param in mthd.GetParameters())
-                typeParser.Parse(param.ParameterType);
+            //foreach (var param in mthd.GetParameters())
+            //    typeParser.Parse(param.ParameterType);
 
             //TODO: Generate conversion methods for every type this type can convert to (including interfaces)
             //TODO: For generic types generate a specialized version of the type

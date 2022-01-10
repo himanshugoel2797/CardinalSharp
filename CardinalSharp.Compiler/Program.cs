@@ -6,8 +6,8 @@ using CardinalSharp.Compiler;
 
 TypeResolver typeResolver = new TypeResolver();
 Records records = new Records();
-TypeParser typeParser = new TypeParser(records, typeResolver);
-MethodParser methodParser = new MethodParser(records, typeParser, typeResolver);
+//TypeParser typeParser = new TypeParser(records, typeResolver);
+MethodParser methodParser = new MethodParser(records, null, typeResolver);
 VTableCache vTableCache = new VTableCache(typeResolver);
 
 Console.WriteLine("Generating VTables...");
